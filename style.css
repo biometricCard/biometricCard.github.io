@@ -172,6 +172,16 @@
 /* End Nave bare and side bare */
 
 /* start page */
+.reglage{
+	padding: 0 20px 20px
+}
+.reglage span{
+	color: var(--primary);
+	font-size: 20px;
+	margin-left: 10px;
+}
+
+
 /* الحاوية الكبرى */
 .ferPage {
 	display: grid;
@@ -199,9 +209,9 @@
 	font-family: sans-serif;
 	font-weight: bold;
 	border-radius: 5px;
-	/* width: 5.45cm; */
+	width: 5.45cm;
 	height: 8.62cm;
-	max-width: 100%;
+	/* max-width: 100%; */
 }
 
 
