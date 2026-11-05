@@ -56,100 +56,104 @@ function printDiv(divId) {
 	document.body.innerHTML = originalContents;
 }
 
+async function downloadPDF(idDive, namePage) {
+	// الطريقة الآمنة لفك تفكيك (Destructure) أو جلب الكلاس المسؤول عن الـ PDF
+	let jsPDF;
+	if (window.jspdf && window.jspdf.jsPDF) {
+		jsPDF = window.jspdf.jsPDF;
+	} else if (window.jsPDF) {
+		jsPDF = window.jsPDF;
+	} else {
+		alert(
+			"لم يتم تحميل مكتبة jspdf بشكل صحيح، يرجى التحقق من اتصال الإنترنت أو روابط CDN.",
+		);
+		return;
+	}
+	// تحديد العنصر المراد تحويله (الحاوية التي تضم الـ Grid والصور التسعة)
+	const element = document.getElementById(idDive);
+	// 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
+	const clonedElm = element.cloneNode(true);
 
+	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
+	const nwId = "cloned-" + Date.now();
+	clonedElm.id = nwId;
+	clonedElm.style.backgroundColor = "#fff";
+	document.getElementById("clonDiv").appendChild(clonedElm);
 
-
-
-
-async function downloadPDF(idDive,namePage) {
-    // الطريقة الآمنة لفك تفكيك (Destructure) أو جلب الكلاس المسؤول عن الـ PDF
-    let jsPDF;
-    if (window.jspdf && window.jspdf.jsPDF) {
-        jsPDF = window.jspdf.jsPDF;
-    } else if (window.jsPDF) {
-        jsPDF = window.jsPDF;
-    } else {
-        alert("لم يتم تحميل مكتبة jspdf بشكل صحيح، يرجى التحقق من اتصال الإنترنت أو روابط CDN.");
-        return;
-    }
-    // تحديد العنصر المراد تحويله (الحاوية التي تضم الـ Grid والصور التسعة)
-    const element = document.getElementById(idDive);
-    // 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
-  const clonedElm = element.cloneNode(true);
-  
-  // 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
-  const nwId = 'cloned-' + Date.now()
-  clonedElm.id = nwId;
-    clonedElm.style.backgroundColor = "#fff"
-    document.getElementById('clonDiv').appendChild(clonedElm);
-    
-    try {
-        // تحويل الـ div إلى صورة مع دعم الصور الخارجية (CORS) لحل مشاكل التحميل
-        const canvas = await html2canvas(clonedElm, { 
-            scale: 2,
-            useCORS: true, // يحل مشاكل عدم ظهور الصور إذا كانت من روابط خارجية
-            allowTaint: true
-        });
-        const imgData = canvas.toDataURL('image/png');
-        // إنشاء مستند PDF جديد بمقاس A4
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        // حساب أبعاد الصورة لتتناسب تلقائياً مع حجم ورقة الـ A4
-        const imgWidth = 210; // عرض A4 بالمليمتر
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        // إضافة الصورة داخل ملف الـ PDF
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-        // تحميل الملف باسم محدد
-        pdf.save(namePage+'-card.pdf');
-    } catch (error) {
-        console.error("حدث خطأ أثناء توليد الـ PDF:", error);
-    }
+	try {
+		// تحويل الـ div إلى صورة مع دعم الصور الخارجية (CORS) لحل مشاكل التحميل
+		const canvas = await html2canvas(clonedElm, {
+			scale: 2,
+			useCORS: true, // يحل مشاكل عدم ظهور الصور إذا كانت من روابط خارجية
+			allowTaint: true,
+		});
+		const imgData = canvas.toDataURL("image/png");
+		// إنشاء مستند PDF جديد بمقاس A4
+		const pdf = new jsPDF("p", "mm", "a4");
+		// حساب أبعاد الصورة لتتناسب تلقائياً مع حجم ورقة الـ A4
+		const imgWidth = 210; // عرض A4 بالمليمتر
+		const imgHeight = (canvas.height * imgWidth) / canvas.width;
+		// إضافة الصورة داخل ملف الـ PDF
+		pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+		// تحميل الملف باسم محدد
+		pdf.save(namePage + "-card.pdf");
+	} catch (error) {
+		console.error("حدث خطأ أثناء توليد الـ PDF:", error);
+	}
 }
 
-
-
-
-
-
 async function downloadMultiPagePDF() {
-    const jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
-    
-    if (!jsPDF) {
-        alert("خطأ: لم يتم تحميل مكتبة PDF بنجاح.");
-        return;
-    }
+	const jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
 
-    // جلب العناصر الحاوية من الصفحة
-    const page1 = document.getElementById('pageFc');
-    const page2 = document.getElementById('pageBack');
-    
-    try {
-        // 1. إنشاء مستند PDF جديد (A4)
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const imgWidth = 210; // عرض ورقة A4 بالمليمتر
+	if (!jsPDF) {
+		alert("خطأ: لم يتم تحميل مكتبة PDF بنجاح.");
+		return;
+	}
 
-        // 2. معالجة الصفحة الأولى
-        const canvas1 = await html2canvas(page1, { scale: 2, useCORS: true });
-        const imgData1 = canvas1.toDataURL('image/png');
-        const imgHeight1 = (canvas1.height * imgWidth) / canvas1.width;
-        
-        // إضافة محتوى الـ div الأول في الصفحة الأولى
-        pdf.addImage(imgData1, 'PNG', 0, 0, imgWidth, imgHeight1);
+	// جلب العناصر الحاوية من الصفحة
+	const element1 = document.getElementById("pageFc");
+	// 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
+	const page1 = element1.cloneNode(true);
+	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
+	const nwId = "cloned1-" + Date.now();
+	page1.id = nwId;
+	page1.style.backgroundColor = "#fff";
+	document.getElementById("clonDiv").appendChild(page1);
 
-        // 3. إضافة صفحة جديدة فارغة داخل المستند
-        pdf.addPage();
+	const element2 = document.getElementById("pageBack");
+    const page2 = element2.cloneNode(true);
+	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
+	const nwId2 = "cloned2-" + Date.now();
+	page2.id = nwId2;
+	page2.style.backgroundColor = "#fff";
+	document.getElementById("clonDiv").appendChild(page2);
+	try {
+		// 1. إنشاء مستند PDF جديد (A4)
+		const pdf = new jsPDF("p", "mm", "a4");
+		const imgWidth = 210; // عرض ورقة A4 بالمليمتر
 
-        // 4. معالجة الصفحة الثانية
-        const canvas2 = await html2canvas(page2, { scale: 2, useCORS: true });
-        const imgData2 = canvas2.toDataURL('image/png');
-        const imgHeight2 = (canvas2.height * imgWidth) / canvas2.width;
-        
-        // إضافة محتوى الـ div الثاني في الصفحة الثانية الجديدة
-        pdf.addImage(imgData2, 'PNG', 0, 0, imgWidth, imgHeight2);
+		// 2. معالجة الصفحة الأولى
+		const canvas1 = await html2canvas(page1, { scale: 2, useCORS: true });
+		const imgData1 = canvas1.toDataURL("image/png");
+		const imgHeight1 = (canvas1.height * imgWidth) / canvas1.width;
 
-        // 5. تحميل الملف النهائي المكون من صفحتين
-        pdf.save('biometric-card.pdf');
-        
-    } catch (error) {
-        console.error("حدث خطأ أثناء توليد صفحات الـ PDF:", error);
-    }
+		// إضافة محتوى الـ div الأول في الصفحة الأولى
+		pdf.addImage(imgData1, "PNG", 0, 0, imgWidth, imgHeight1);
+
+		// 3. إضافة صفحة جديدة فارغة داخل المستند
+		pdf.addPage();
+
+		// 4. معالجة الصفحة الثانية
+		const canvas2 = await html2canvas(page2, { scale: 2, useCORS: true });
+		const imgData2 = canvas2.toDataURL("image/png");
+		const imgHeight2 = (canvas2.height * imgWidth) / canvas2.width;
+
+		// إضافة محتوى الـ div الثاني في الصفحة الثانية الجديدة
+		pdf.addImage(imgData2, "PNG", 0, 0, imgWidth, imgHeight2);
+
+		// 5. تحميل الملف النهائي المكون من صفحتين
+		pdf.save("biometric-card.pdf");
+	} catch (error) {
+		console.error("حدث خطأ أثناء توليد صفحات الـ PDF:", error);
+	}
 }
