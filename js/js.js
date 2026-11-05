@@ -1,5 +1,5 @@
-const heightCrt = document.getElementById('heightCrt');
-const widthCrt = document.getElementById('widthCrt');
+const heightCrt = document.getElementById("heightCrt");
+const widthCrt = document.getElementById("widthCrt");
 const inputFace = document.getElementById("inputFace");
 const inputBack = document.getElementById("inputBack");
 const boxsF = document.querySelectorAll(".boxF");
@@ -7,28 +7,26 @@ const boxsB = document.querySelectorAll(".boxB");
 
 // change height and width
 heightCrt.addEventListener("input", ev => {
-	chngDmnchn("height",heightCrt.value)
+	chngDmnchn("height", heightCrt.value);
 });
-widthCrt.addEventListener("input", ev => {
-	chngDmnchn("width",widthCrt.value)
+widthCrt.addEventListener("input", () => {
+	chngDmnchn("width", widthCrt.value);
 });
-function chngDmnchn(horW,value) {
-    if(!value) return
-    document.querySelectorAll(".box").forEach(box =>{
-        box.style[horW] = value+'cm'
-    })
+function chngDmnchn(horW, value) {
+	if (!value) return;
+	document.querySelectorAll(".box").forEach(box => {
+		box.style[horW] = value + "cm";
+	});
 }
-
-
 
 // الاستماع لحدث تغيير المدخلات (عندما يختار المستخدم صورة)
 inputFace.addEventListener("change", ev => {
-	upldImg(ev,boxsF);
+	upldImg(ev, boxsF);
 });
 inputBack.addEventListener("change", ev => {
-	upldImg(ev,boxsB);
+	upldImg(ev, boxsB);
 });
-function upldImg(ev,boxs) {
+function upldImg(ev, boxs) {
 	const file = ev.target.files[0]; // الحصول على الملف المختار
 	if (file) {
 		const reader = new FileReader();
@@ -42,4 +40,105 @@ function upldImg(ev,boxs) {
 		// بدء قراءة ملف الصورة كـ Data URL
 		reader.readAsDataURL(file);
 	}
+}
+/* print Dive */
+function printDiv(divId) {
+	// 1. جلب محتوى الـ div المراد طباعته
+	var printContents = document.getElementById(divId).innerHTML;
+	// 2. فتح نافذة جديدة في المتصفح
+	var originalContents = document.body.innerHTML;
+	// 3. استبدال محتوى الصفحة بالكامل بمحتوى الـ div مؤقتاً
+	document.body.innerHTML = `<div id="${divId}" class="ferPage" >${printContents}</div>`;
+	window.print();
+	// 5. إعادة محتوى الصفحة الأصلي بعد إغلاق نافذة الطباعة
+	document.body.innerHTML = originalContents;
+}
+
+
+
+
+
+
+async function downloadPDF(idDive,namePage) {
+    // الطريقة الآمنة لفك تفكيك (Destructure) أو جلب الكلاس المسؤول عن الـ PDF
+    let jsPDF;
+    if (window.jspdf && window.jspdf.jsPDF) {
+        jsPDF = window.jspdf.jsPDF;
+    } else if (window.jsPDF) {
+        jsPDF = window.jsPDF;
+    } else {
+        alert("لم يتم تحميل مكتبة jspdf بشكل صحيح، يرجى التحقق من اتصال الإنترنت أو روابط CDN.");
+        return;
+    }
+    // تحديد العنصر المراد تحويله (الحاوية التي تضم الـ Grid والصور التسعة)
+    const element = document.getElementById(idDive);
+    try {
+        // تحويل الـ div إلى صورة مع دعم الصور الخارجية (CORS) لحل مشاكل التحميل
+        const canvas = await html2canvas(element, { 
+            scale: 2,
+            useCORS: true, // يحل مشاكل عدم ظهور الصور إذا كانت من روابط خارجية
+            allowTaint: true
+        });
+        const imgData = canvas.toDataURL('image/png');
+        // إنشاء مستند PDF جديد بمقاس A4
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        // حساب أبعاد الصورة لتتناسب تلقائياً مع حجم ورقة الـ A4
+        const imgWidth = 210; // عرض A4 بالمليمتر
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        // إضافة الصورة داخل ملف الـ PDF
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        // تحميل الملف باسم محدد
+        pdf.save(namePage+'-card.pdf');
+    } catch (error) {
+        console.error("حدث خطأ أثناء توليد الـ PDF:", error);
+    }
+}
+
+
+
+
+
+
+async function downloadMultiPagePDF() {
+    const jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
+    
+    if (!jsPDF) {
+        alert("خطأ: لم يتم تحميل مكتبة PDF بنجاح.");
+        return;
+    }
+
+    // جلب العناصر الحاوية من الصفحة
+    const page1 = document.getElementById('pageFc');
+    const page2 = document.getElementById('pageBack');
+    
+    try {
+        // 1. إنشاء مستند PDF جديد (A4)
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210; // عرض ورقة A4 بالمليمتر
+
+        // 2. معالجة الصفحة الأولى
+        const canvas1 = await html2canvas(page1, { scale: 2, useCORS: true });
+        const imgData1 = canvas1.toDataURL('image/png');
+        const imgHeight1 = (canvas1.height * imgWidth) / canvas1.width;
+        
+        // إضافة محتوى الـ div الأول في الصفحة الأولى
+        pdf.addImage(imgData1, 'PNG', 0, 0, imgWidth, imgHeight1);
+
+        // 3. إضافة صفحة جديدة فارغة داخل المستند
+        pdf.addPage();
+
+        // 4. معالجة الصفحة الثانية
+        const canvas2 = await html2canvas(page2, { scale: 2, useCORS: true });
+        const imgData2 = canvas2.toDataURL('image/png');
+        const imgHeight2 = (canvas2.height * imgWidth) / canvas2.width;
+        
+        // إضافة محتوى الـ div الثاني في الصفحة الثانية الجديدة
+        pdf.addImage(imgData2, 'PNG', 0, 0, imgWidth, imgHeight2);
+
+        // 5. تحميل الملف النهائي المكون من صفحتين
+        pdf.save('biometric-card.pdf');
+        
+    } catch (error) {
+        console.error("حدث خطأ أثناء توليد صفحات الـ PDF:", error);
+    }
 }
