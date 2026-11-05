@@ -115,16 +115,14 @@ async function downloadMultiPagePDF() {
 	// 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
 	const page1 = element1.cloneNode(true);
 	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
-	const nwId = "cloned1-" + Date.now();
-	page1.id = nwId;
+	page1.id =  "cloned1-" + Date.now();
 	page1.style.backgroundColor = "#fff";
 	document.getElementById("clonDiv").appendChild(page1);
 
 	const element2 = document.getElementById("pageBack");
     const page2 = element2.cloneNode(true);
 	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
-	const nwId2 = "cloned2-" + Date.now();
-	page2.id = nwId2;
+	page2.id = "cloned2-" + Date.now();
 	page2.style.backgroundColor = "#fff";
 	document.getElementById("clonDiv").appendChild(page2);
 	try {
