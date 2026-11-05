@@ -207,10 +207,11 @@
 	color: var(--primary);
 	font-weight: bold;
 	margin: auto;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 .img-view img {
 	height: 100px;
+	margin-bottom: -15px;
 }
 /* الحاوية الكبرى */
 /* .contnr {
@@ -230,7 +231,7 @@
 	background-color: #111;
 	opacity: 0.3;
 } */
-.ferPage ,.pageFc2 {
+.ferPage{
 	position: relative;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr); /* 3 أعمدة متساوية الحجم */
@@ -243,7 +244,7 @@
 	margin: auto;
 	padding: 0.5cm;
 	margin-bottom: 50px;
-	background: #eee;
+	background: #690e0e;
 }
 
 /* العناصر الداخلية (اختياري للتنسيق فقط) */
@@ -260,7 +261,7 @@
 	height: 8.62cm;
 	/* max-width: 100%; */
 }
-.dvBtn{
+.dvBtn {
 	display: flex;
 	align-items: center;
 	gap: 25px;
@@ -268,23 +269,21 @@
 }
 button {
 	background-color: #007bff;
-    color: #fff;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1em;
-    display: inline-flex;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-weight: 700;
-    justify-content: center;
-    flex-wrap: nowrap;
-    align-items: center;
+	color: #fff;
+	padding: 12px 25px;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.1em;
+	display: inline-flex;
+	transition:
+		background-color 0.3s ease,
+		transform 0.2s ease;
+	font-weight: 700;
+	justify-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
 	gap: 5px;
 }
-button img{
+button img {
 	height: 20px;
 }
-
-
-
-

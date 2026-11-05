@@ -8,6 +8,7 @@
 		<title>biometric card</title>
 	</head>
 	<body>
+		
 		<div class="container pirantCntynr">
 			<div class="reglage">
 				<span>height :</span>
@@ -18,6 +19,7 @@
 
 			<!-- face of card -->
 			<h2>page 1</h2>
+			
 			<div class="upldImg">
 				<label for="inputFace" id="drop-area">
 					<input type="file" accept="image/*" id="inputFace" hidden />
@@ -35,6 +37,7 @@
 				</label>
 			</div>
 			<div id="pageFc" class="ferPage">
+				<div id="clonDiv" style="position: absolute;z-index: -1;"></div>
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
@@ -71,7 +74,7 @@
 					</div>
 				</label>
 			</div>
-			<div id="pageBack" class="ferPage">
+			<div id="pageBack" class="ferPage" >
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />

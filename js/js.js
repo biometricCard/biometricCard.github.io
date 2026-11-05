@@ -48,7 +48,9 @@ function printDiv(divId) {
 	// 2. فتح نافذة جديدة في المتصفح
 	var originalContents = document.body.innerHTML;
 	// 3. استبدال محتوى الصفحة بالكامل بمحتوى الـ div مؤقتاً
-	document.body.innerHTML = `<div id="${divId}" class="ferPage" >${printContents}</div>`;
+	document.body.innerHTML = `<div id="${divId}" 
+        class="ferPage"style="background-color: #fff;">
+        ${printContents}</div>`;
 	window.print();
 	// 5. إعادة محتوى الصفحة الأصلي بعد إغلاق نافذة الطباعة
 	document.body.innerHTML = originalContents;
@@ -72,9 +74,18 @@ async function downloadPDF(idDive,namePage) {
     }
     // تحديد العنصر المراد تحويله (الحاوية التي تضم الـ Grid والصور التسعة)
     const element = document.getElementById(idDive);
+    // 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
+  const clonedElm = element.cloneNode(true);
+  
+  // 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
+  const nwId = 'cloned-' + Date.now()
+  clonedElm.id = nwId;
+    clonedElm.style.backgroundColor = "#fff"
+    document.getElementById('clonDiv').appendChild(clonedElm);
+    
     try {
         // تحويل الـ div إلى صورة مع دعم الصور الخارجية (CORS) لحل مشاكل التحميل
-        const canvas = await html2canvas(element, { 
+        const canvas = await html2canvas(clonedElm, { 
             scale: 2,
             useCORS: true, // يحل مشاكل عدم ظهور الصور إذا كانت من روابط خارجية
             allowTaint: true
