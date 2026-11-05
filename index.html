@@ -8,28 +8,121 @@
 		<title>biometric card</title>
 	</head>
 	<body>
-		<div class="container pirantCntynr"></div>
-		<div class="reglage" >
-			<span >height :</span>
-			<input id="heightCrt" type="number" value="8.62"  step="0.01"/> cm 
-			<br><span >width :</span>
-			<input id="widthCrt" type="number" value="5.45" /> cm
-		</div>
-		<div class="contnr" >
-			<div class="chado">ddd</div>
-			<div class="ferPage">
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-			<img class="box" src="./imgs/face.jpg" alt="" />
-		</div>
-		</div>
 		
+		<div class="container pirantCntynr">
+			<div class="reglage">
+				<span>height :</span>
+				<input id="heightCrt" type="number" value="8.62" step="0.01" /> cm
+				<span>width :</span>
+				<input id="widthCrt" type="number" value="5.45" /> cm
+			</div>
+
+			<!-- face of card -->
+			<h2>page 1</h2>
+			<div class="upldImg">
+				<label for="inputFace" id="drop-area">
+					<input type="file" accept="image/*" id="inputFace" hidden />
+					<div class="img-view">
+						<img
+							id="uploadedImageF"
+							src="./imgs/icon.png"
+							alt="upload image"
+						/><br />
+						upload face of card
+						<span id="errImgFace" style="color: red; display: none"
+							>Error upload Image</span
+						>
+					</div>
+				</label>
+			</div>
+			<div id="pageFc" class="ferPage">
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+				<img class="box boxF" src="./imgs/face.jpg" alt="" />
+			</div>
+			<div class="dvBtn">
+				<button>Download as PDF</button>
+				<button onclick="printDiv('pageFc')">
+					print <img src="./imgs/print-svgrepo-com.svg" alt="" />
+				</button>
+			</div>
+			<div style="height: 50px"></div>
+			<!-- Back of card -->
+
+			<h2>page 2</h2>
+			<div class="upldImg">
+				<label for="inputBack" id="drop-area">
+					<input type="file" accept="image/*" id="inputBack" hidden />
+					<div class="img-view">
+						<img
+							id="uploadedImageB"
+							src="./imgs/icon.png"
+							alt="upload image"
+						/><br />
+						upload back of card
+						<span id="errImgFace" style="color: red; display: none"
+							>Error upload Image</span
+						>
+					</div>
+				</label>
+			</div>
+			<div id="pageBack" class="ferPage">
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+				<img class="box boxB" src="./imgs/back.jpg" alt="" />
+			</div>
+			<div class="dvBtn">
+				<button>Download as PDF</button>
+				<button onclick="printDiv('pageBack')">print <img src="./imgs/print-svgrepo-com.svg" alt="" /></button>
+			</div>
+			<br />
+			<div class="dvBtn"><button>Download 2 pages as PDF</button></div>
+		</div>
+
+		<!-- العنصر المراد طباعته -->
+		<div id="printArea">
+			<h1>الفاتورة أو التقرير</h1>
+			<p>هذا النص فقط هو ما سيظهر في ورقة الطباعة.</p>
+		</div>
+
+		<script>
+			function printDiv(divId) {
+				// 1. جلب محتوى الـ div المراد طباعته
+				var printContents = document.getElementById(divId).innerHTML;
+
+				// 2. فتح نافذة جديدة في المتصفح
+				var originalContents = document.body.innerHTML;
+
+				// 3. استبدال محتوى الصفحة بالكامل بمحتوى الـ div مؤقتاً
+				document.body.innerHTML = `<div id="${divId}" class="ferPage" >${printContents}</div>`;
+				
+				// 4. استدعاء أمر الطباعة الخاص بالمتصفح
+				/* setTimeout(() => { */
+					window.print();
+
+				// 5. إعادة محتوى الصفحة الأصلي بعد إغلاق نافذة الطباعة
+				document.body.innerHTML = originalContents;
+				/* }, 5000); */
+				
+
+				// 6. إعادة تحميل الصفحة لضمان عمل الأزرار والأكواد البرمجية بشكل طبيعي
+				//location.reload();
+			}
+		</script>
+
 		<script src="./js/navbar.js"></script>
+		<script src="./js/js.js"></script>
 	</body>
 </html>
