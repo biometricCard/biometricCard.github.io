@@ -37,6 +37,7 @@ remvApendChild(pageFc, 9);
 remvApendChild(pageBack, 9);
 function remvApendChild(prnt, num) {
 	const frstChld = prnt.querySelector(":scope > img").cloneNode(true);
+	
 	const boxs = prnt.querySelectorAll("img");
 	let dfrnc = boxs.length - num;
 	if (dfrnc > 0) {
