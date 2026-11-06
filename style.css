@@ -172,22 +172,21 @@
 /* start page */
 .reglage {
 	width: 21cm;
-	margin: auto;
-	padding: 0 20px;
+	margin: 25px auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 30px;
 }
 .reglage span {
 	color: var(--primary);
 	font-size: 20px;
-	margin-left: 10px;
+	margin-left: 20px;
 }
 .reglage input {
 	border: #007bff 1px solid;
 	border-radius: 3px;
 	padding: 5px;
-	margin: 5px;
 	width: 70px;
 }
 
@@ -215,7 +214,7 @@
 	cursor: pointer;
 }
 /* الحاوية الكبرى */
-.ferPage{
+.ferPage3 {
 	position: relative;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr); /* 3 أعمدة متساوية الحجم */
@@ -230,6 +229,25 @@
 	margin-bottom: 50px;
 	background: #eee;
 }
+.ferPage {
+	position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 1cm;
+    width: 21cm;
+    height: 29.7cm;
+    margin: auto;
+    padding: 0.5cm;
+    margin-bottom: 50px;
+    background: #eee;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.ferPage2 {
+	direction: rtl;
+}
 
 /* العناصر الداخلية (اختياري للتنسيق فقط) */
 .box {
@@ -241,34 +259,33 @@
 }
 
 .dvBtn {
-	
 	display: flex;
 	align-items: center;
 	gap: 25px;
 	justify-content: center;
 }
-.patient{
+.patient {
 	position: absolute;
 	left: calc(50% - 10px);
-    top: calc(50% - 10px);
+	top: calc(50% - 10px);
 	height: 20px;
 	width: 20px;
 	border: 3px solid #fff;
 	border-left-color: transparent;
 	border-radius: 50%;
-	animation: spin .3s linear infinite;
+	animation: spin 0.3s linear infinite;
 }
-.n{
+.n {
 	display: none;
 }
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+	0% {
+		transform: rotate(0deg);
+	}
 
-    100% {
-        transform: rotate(360deg);
-    }
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 button {
@@ -290,3 +307,7 @@ button {
 button img {
 	height: 20px;
 }
+
+
+
+    

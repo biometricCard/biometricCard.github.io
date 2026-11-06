@@ -1,12 +1,19 @@
-const heightCrt = document.getElementById("heightCrt");
-const widthCrt = document.getElementById("widthCrt");
-const inputFace = document.getElementById("inputFace");
-const inputBack = document.getElementById("inputBack");
+const heightCrt = gebi("heightCrt");
+const widthCrt = gebi("widthCrt");
+const inputFace = gebi("inputFace");
+const inputBack = gebi("inputBack");
 const boxsF = document.querySelectorAll(".boxF");
 const boxsB = document.querySelectorAll(".boxB");
+const nmbrCrt = gebi("nmbrCrt");
+const pageFc = gebi("pageFc");
+const pageBack = gebi("pageBack");
+
+function gebi(pr) {
+	return document.getElementById(pr);
+}
 
 // change height and width
-heightCrt.addEventListener("input", ev => {
+heightCrt.addEventListener("input", () => {
 	chngDmnchn("height", heightCrt.value);
 });
 widthCrt.addEventListener("input", () => {
@@ -17,6 +24,31 @@ function chngDmnchn(horW, value) {
 	document.querySelectorAll(".box").forEach(box => {
 		box.style[horW] = value + "cm";
 	});
+}
+
+// change height and width
+nmbrCrt.addEventListener("input", () => {
+	const valueNm = nmbrCrt.value;
+	if (!valueNm) return;
+	remvApendChild(pageFc, valueNm);
+	remvApendChild(pageBack, valueNm);
+});
+
+function remvApendChild(prnt, num) {
+	const frstChld = prnt.querySelector(":scope > img").cloneNode(true);
+	const boxs = prnt.querySelectorAll("img");
+	const dfrnc = boxs.length - num;
+	if (dfrnc > 0) {
+		for (let i = 0; i < dfrnc; i++) {
+			prnt.querySelector(":scope > img").remove();
+		}
+	} else if (dfrnc < 0) {
+		const dfRvrs = dfrnc * -1;
+		for (let i = 0; i < dfRvrs; i++) {
+			const frCln = frstChld.cloneNode(true);
+			prnt.appendChild(frCln);
+		}
+	}
 }
 
 // الاستماع لحدث تغيير المدخلات (عندما يختار المستخدم صورة)
@@ -44,7 +76,7 @@ function upldImg(ev, boxs) {
 /* print Dive */
 function printDiv(divId) {
 	// 1. جلب محتوى الـ div المراد طباعته
-	var printContents = document.getElementById(divId).innerHTML;
+	var printContents = gebi(divId).innerHTML;
 	// 2. فتح نافذة جديدة في المتصفح
 	var originalContents = document.body.innerHTML;
 	// 3. استبدال محتوى الصفحة بالكامل بمحتوى الـ div مؤقتاً
@@ -70,9 +102,9 @@ async function downloadPDF(idDive, namePage, btn) {
 		return;
 	}
 	btn.style.color = "transparent";
-	document.getElementById("pt" + idDive).className = "patient";
+	gebi("pt" + idDive).className = "patient";
 	// تحديد العنصر المراد تحويله (الحاوية التي تضم الـ Grid والصور التسعة)
-	const element = document.getElementById(idDive);
+	const element = gebi(idDive);
 	// 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
 	const clonedElm = element.cloneNode(true);
 
@@ -80,7 +112,7 @@ async function downloadPDF(idDive, namePage, btn) {
 	const nwId = "cloned-" + Date.now();
 	clonedElm.id = nwId;
 	clonedElm.style.backgroundColor = "#fff";
-	document.getElementById("clonDiv").appendChild(clonedElm);
+	gebi("clonDiv").appendChild(clonedElm);
 
 	try {
 		// تحويل الـ div إلى صورة مع دعم الصور الخارجية (CORS) لحل مشاكل التحميل
@@ -101,44 +133,41 @@ async function downloadPDF(idDive, namePage, btn) {
 		pdf.save(namePage + "-card.pdf");
 		clonedElm.remove();
 		btn.style.color = "#fff";
-		document.getElementById("pt" + idDive).className = "n";
+		gebi("pt" + idDive).className = "n";
 	} catch (error) {
 		console.error("حدث خطأ أثناء توليد الـ PDF:", error);
 	}
 }
 
 async function downloadMultiPagePDF(btn) {
-    //
+	//
 	const jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
 
 	if (!jsPDF) {
 		alert("خطأ: لم يتم تحميل مكتبة PDF بنجاح.");
 		return;
 	}
-    btn.style.color = 'transparent';
-	document.getElementById('ptDblPg').className = "patient";
-	// جلب العناصر الحاوية من الصفحة
-	const element1 = document.getElementById("pageFc");
+	btn.style.color = "transparent";
+	gebi("ptDblPg").className = "patient";
 	// 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
-	const page1 = element1.cloneNode(true);
+	const pageFcCop = pageFc.cloneNode(true);
 	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
-	page1.id = "cloned1-" + Date.now();
-	page1.style.backgroundColor = "#fff";
-	document.getElementById("clonDiv").appendChild(page1);
+	pageFcCop.id = "cloned1-" + Date.now();
+	pageFcCop.style.backgroundColor = "#fff";
+	gebi("clonDiv").appendChild(pageFcCop);
 
-	const element2 = document.getElementById("pageBack");
-	const page2 = element2.cloneNode(true);
+	const pageBackCop = pageBack.cloneNode(true);
 	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
-	page2.id = "cloned2-" + Date.now();
-	page2.style.backgroundColor = "#fff";
-	document.getElementById("clonDiv2").appendChild(page2);
+	pageBackCop.id = "cloned2-" + Date.now();
+	pageBackCop.style.backgroundColor = "#fff";
+	gebi("clonDiv2").appendChild(pageBackCop);
 	try {
 		// 1. إنشاء مستند PDF جديد (A4)
 		const pdf = new jsPDF("p", "mm", "a4");
 		const imgWidth = 210; // عرض ورقة A4 بالمليمتر
 
 		// 2. معالجة الصفحة الأولى
-		const canvas1 = await html2canvas(page1, { scale: 2, useCORS: true });
+		const canvas1 = await html2canvas(pageFcCop, { scale: 2, useCORS: true });
 		const imgData1 = canvas1.toDataURL("image/png");
 		const imgHeight1 = (canvas1.height * imgWidth) / canvas1.width;
 
@@ -149,7 +178,7 @@ async function downloadMultiPagePDF(btn) {
 		pdf.addPage();
 
 		// 4. معالجة الصفحة الثانية
-		const canvas2 = await html2canvas(page2, { scale: 2, useCORS: true });
+		const canvas2 = await html2canvas(pageBackCop, { scale: 2, useCORS: true });
 		const imgData2 = canvas2.toDataURL("image/png");
 		const imgHeight2 = (canvas2.height * imgWidth) / canvas2.width;
 
@@ -158,10 +187,10 @@ async function downloadMultiPagePDF(btn) {
 
 		// 5. تحميل الملف النهائي المكون من صفحتين
 		pdf.save("biometric-card.pdf");
-		page1.remove();
-		page2.remove();
-        btn.style.color = '#fff';
-	document.getElementById('ptDblPg').className = "n";
+		pageFcCop.remove();
+		pageBackCop.remove();
+		btn.style.color = "#fff";
+		gebi("ptDblPg").className = "n";
 	} catch (error) {
 		console.error("حدث خطأ أثناء توليد صفحات الـ PDF:", error);
 	}

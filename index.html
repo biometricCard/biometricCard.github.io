@@ -10,10 +10,16 @@
 	<body>
 		<div class="container pirantCntynr">
 			<div class="reglage">
-				<span>height :</span>
-				<input id="heightCrt" type="number" value="8.62" step="0.01" /> cm
-				<span>width :</span>
-				<input id="widthCrt" type="number" value="5.45" /> cm
+				<div>
+					<span>height :</span>
+					<input id="heightCrt" type="number" value="8.62" step="0.01" /> cm
+					<span>width :</span>
+					<input id="widthCrt" type="number" value="5.45" step="0.01" /> cm
+				</div>
+				<div>
+					<span>number : </span>
+					<input id="nmbrCrt" type="number" value="9" step="1" min="1" />
+				</div>
 			</div>
 
 			<!-- face of card -->
@@ -77,7 +83,7 @@
 					</div>
 				</label>
 			</div>
-			<div id="pageBack" class="ferPage">
+			<div id="pageBack" class="ferPage ferPage2">
 				<div id="clonDiv2" style="position: absolute; z-index: -1"></div>
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
