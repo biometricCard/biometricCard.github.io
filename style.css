@@ -214,21 +214,7 @@
 	cursor: pointer;
 }
 /* الحاوية الكبرى */
-.ferPage3 {
-	position: relative;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr); /* 3 أعمدة متساوية الحجم */
-	grid-template-rows: repeat(3, 1fr); /* 3 صفوف متساوية الحجم */
-	align-items: center;
-	justify-items: center;
-	gap: 10px; /* الفراغات بين العناصر */
-	width: 21cm;
-	height: 29.7cm;
-	margin: auto;
-	padding: 0.5cm;
-	margin-bottom: 50px;
-	background: #eee;
-}
+
 .ferPage {
 	position: relative;
     display: flex;

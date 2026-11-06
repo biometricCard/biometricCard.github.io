@@ -33,18 +33,19 @@ nmbrCrt.addEventListener("input", () => {
 	remvApendChild(pageFc, valueNm);
 	remvApendChild(pageBack, valueNm);
 });
-
+remvApendChild(pageFc, 9);
+remvApendChild(pageBack, 9);
 function remvApendChild(prnt, num) {
 	const frstChld = prnt.querySelector(":scope > img").cloneNode(true);
 	const boxs = prnt.querySelectorAll("img");
-	const dfrnc = boxs.length - num;
+	let dfrnc = boxs.length - num;
 	if (dfrnc > 0) {
 		for (let i = 0; i < dfrnc; i++) {
 			prnt.querySelector(":scope > img").remove();
 		}
-	} else if (dfrnc < 0) {
-		const dfRvrs = dfrnc * -1;
-		for (let i = 0; i < dfRvrs; i++) {
+	} else  {
+		dfrnc = -dfrnc ;
+		for (let i = 0; i < dfrnc; i++) {
 			const frCln = frstChld.cloneNode(true);
 			prnt.appendChild(frCln);
 		}
