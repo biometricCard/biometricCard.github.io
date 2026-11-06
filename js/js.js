@@ -124,7 +124,7 @@ async function downloadMultiPagePDF() {
 	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
 	page2.id = "cloned2-" + Date.now();
 	page2.style.backgroundColor = "#fff";
-	document.getElementById("clonDiv").appendChild(page2);
+	document.getElementById("clonDiv2").appendChild(page2);
 	try {
 		// 1. إنشاء مستند PDF جديد (A4)
 		const pdf = new jsPDF("p", "mm", "a4");
