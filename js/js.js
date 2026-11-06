@@ -97,6 +97,7 @@ async function downloadPDF(idDive, namePage) {
 		pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
 		// تحميل الملف باسم محدد
 		pdf.save(namePage + "-card.pdf");
+        clonedElm.remove();
 	} catch (error) {
 		console.error("حدث خطأ أثناء توليد الـ PDF:", error);
 	}
@@ -151,6 +152,8 @@ async function downloadMultiPagePDF() {
 
 		// 5. تحميل الملف النهائي المكون من صفحتين
 		pdf.save("biometric-card.pdf");
+         page1.remove();
+         page2.remove();
 	} catch (error) {
 		console.error("حدث خطأ أثناء توليد صفحات الـ PDF:", error);
 	}
