@@ -21,7 +21,7 @@ sidebar.innerHTML = `<!-- Sidebar (LEFT) -->
 			<a href="/">
 				Home
 				<img src="https://pricealerts.web.app//imgs/web/home-alt-1-svgrepo-com.svg" alt="home"></a>
-			<a href="https://pricealerts.web.app/otherPage/about.html">
+			<a href="./How-to-use.html">
 			How to use
             	<img src="https://pricealerts.web.app//imgs/web/info-circle-svgrepo-com.svg" alt="inf"></a>
 
