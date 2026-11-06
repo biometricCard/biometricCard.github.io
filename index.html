@@ -8,7 +8,6 @@
 		<title>biometric card</title>
 	</head>
 	<body>
-		
 		<div class="container pirantCntynr">
 			<div class="reglage">
 				<span>height :</span>
@@ -19,7 +18,7 @@
 
 			<!-- face of card -->
 			<h2>page 1</h2>
-			
+
 			<div class="upldImg">
 				<label for="inputFace" id="drop-area">
 					<input type="file" accept="image/*" id="inputFace" hidden />
@@ -37,7 +36,7 @@
 				</label>
 			</div>
 			<div id="pageFc" class="ferPage">
-				<div id="clonDiv" style="position: absolute;z-index: -1;"></div>
+				<div id="clonDiv" style="position: absolute; z-index: -1"></div>
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
@@ -48,8 +47,12 @@
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
 			</div>
+
 			<div class="dvBtn">
-				<button onclick="downloadPDF('pageFc', 'face')">Download as PDF</button>
+				<button onclick="downloadPDF('pageFc', 'face',this)">
+					<div id="ptpageFc" class="n"></div>
+					Download as PDF
+				</button>
 				<button onclick="printDiv('pageFc')">
 					print <img src="./imgs/print-svgrepo-com.svg" alt="" />
 				</button>
@@ -74,8 +77,8 @@
 					</div>
 				</label>
 			</div>
-			<div id="pageBack" class="ferPage" >
-				<div id="clonDiv2" style="position: absolute;z-index: -1;"></div>
+			<div id="pageBack" class="ferPage">
+				<div id="clonDiv2" style="position: absolute; z-index: -1"></div>
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
@@ -87,7 +90,8 @@
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
 			</div>
 			<div class="dvBtn">
-				<button onclick="downloadPDF('pageBack', 'Back')">
+				<button onclick="downloadPDF('pageBack', 'Back',this)">
+					<div id="ptpageBack" class="n"></div>
 					Download as PDF
 				</button>
 				<button onclick="printDiv('pageBack')">
@@ -96,7 +100,8 @@
 			</div>
 			<br />
 			<div class="dvBtn">
-				<button onclick="downloadMultiPagePDF()">
+				<button onclick="downloadMultiPagePDF(this)">
+					<div id="ptDblPg" class="n"></div>
 					Download 2 pages as PDF
 				</button>
 			</div>

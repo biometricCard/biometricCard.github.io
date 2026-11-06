@@ -212,25 +212,9 @@
 .img-view img {
 	height: 100px;
 	margin-bottom: -15px;
+	cursor: pointer;
 }
 /* الحاوية الكبرى */
-/* .contnr {
-	position: relative;
-	padding: 20px;
-	width: 100%;
-} */
-/* .contnr .chado {
-	position: absolute;
-	height: 29.7cm;
-	width: 21cm;
-	left: 50%;
-    transform: translateX(-50%);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #111;
-	opacity: 0.3;
-} */
 .ferPage{
 	position: relative;
 	display: grid;
@@ -261,13 +245,40 @@
 	height: 8.62cm;
 	/* max-width: 100%; */
 }
+
 .dvBtn {
+	
 	display: flex;
 	align-items: center;
 	gap: 25px;
 	justify-content: center;
 }
+.patient{
+	position: absolute;
+	left: calc(50% - 10px);
+    top: calc(50% - 10px);
+	height: 20px;
+	width: 20px;
+	border: 3px solid #fff;
+	border-left-color: transparent;
+	border-radius: 50%;
+	animation: spin .3s linear infinite;
+}
+.n{
+	display: none;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 button {
+	position: relative;
 	background-color: #007bff;
 	color: #fff;
 	padding: 12px 25px;
@@ -275,14 +286,12 @@ button {
 	border-radius: 8px;
 	font-size: 1.1em;
 	display: inline-flex;
-	transition:
-		background-color 0.3s ease,
-		transform 0.2s ease;
 	font-weight: 700;
 	justify-content: center;
 	flex-wrap: nowrap;
 	align-items: center;
 	gap: 5px;
+	cursor: pointer;
 }
 button img {
 	height: 20px;

@@ -56,7 +56,7 @@ function printDiv(divId) {
 	document.body.innerHTML = originalContents;
 }
 
-async function downloadPDF(idDive, namePage) {
+async function downloadPDF(idDive, namePage, btn) {
 	// الطريقة الآمنة لفك تفكيك (Destructure) أو جلب الكلاس المسؤول عن الـ PDF
 	let jsPDF;
 	if (window.jspdf && window.jspdf.jsPDF) {
@@ -69,6 +69,8 @@ async function downloadPDF(idDive, namePage) {
 		);
 		return;
 	}
+	btn.style.color = "transparent";
+	document.getElementById("pt" + idDive).className = "patient";
 	// تحديد العنصر المراد تحويله (الحاوية التي تضم الـ Grid والصور التسعة)
 	const element = document.getElementById(idDive);
 	// 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
@@ -97,31 +99,35 @@ async function downloadPDF(idDive, namePage) {
 		pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
 		// تحميل الملف باسم محدد
 		pdf.save(namePage + "-card.pdf");
-        clonedElm.remove();
+		clonedElm.remove();
+		btn.style.color = "#fff";
+		document.getElementById("pt" + idDive).className = "n";
 	} catch (error) {
 		console.error("حدث خطأ أثناء توليد الـ PDF:", error);
 	}
 }
 
-async function downloadMultiPagePDF() {
+async function downloadMultiPagePDF(btn) {
+    //
 	const jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
 
 	if (!jsPDF) {
 		alert("خطأ: لم يتم تحميل مكتبة PDF بنجاح.");
 		return;
 	}
-
+    btn.style.color = 'transparent';
+	document.getElementById('ptDblPg').className = "patient";
 	// جلب العناصر الحاوية من الصفحة
 	const element1 = document.getElementById("pageFc");
 	// 2. عمل نسخة طبق الأصل منه (دون التأثير على الأصلي)
 	const page1 = element1.cloneNode(true);
 	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
-	page1.id =  "cloned1-" + Date.now();
+	page1.id = "cloned1-" + Date.now();
 	page1.style.backgroundColor = "#fff";
 	document.getElementById("clonDiv").appendChild(page1);
 
 	const element2 = document.getElementById("pageBack");
-    const page2 = element2.cloneNode(true);
+	const page2 = element2.cloneNode(true);
 	// 3. (اختياري) تغيير الـ id للنسخة الجديدة حتى لا يتكرر في الصفحة
 	page2.id = "cloned2-" + Date.now();
 	page2.style.backgroundColor = "#fff";
@@ -152,8 +158,10 @@ async function downloadMultiPagePDF() {
 
 		// 5. تحميل الملف النهائي المكون من صفحتين
 		pdf.save("biometric-card.pdf");
-         page1.remove();
-         page2.remove();
+		page1.remove();
+		page2.remove();
+        btn.style.color = '#fff';
+	document.getElementById('ptDblPg').className = "n";
 	} catch (error) {
 		console.error("حدث خطأ أثناء توليد صفحات الـ PDF:", error);
 	}
