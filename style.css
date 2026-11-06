@@ -233,13 +233,7 @@
 
 /* العناصر الداخلية (اختياري للتنسيق فقط) */
 .box {
-	/* background-color: #3498db; */
-	color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: sans-serif;
-	font-weight: bold;
+	border: 1px solid #bbb;
 	border-radius: 19px;
 	width: 5.45cm;
 	height: 8.62cm;
