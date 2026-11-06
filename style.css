@@ -131,24 +131,14 @@
 	display: block;
 }
 
-/* زر الحساب في الأسفل */
-.accountBtn {
-	position: absolute;
-	bottom: 10px;
-	width: calc(100% - 40px);
-}
 
-.accountBtn img {
-	height: 35px;
-	border-radius: 50%;
-}
 
 /*------------------------------------------------------
   المحتوى
 ------------------------------------------------------*/
 .container {
 	padding: 20px;
-	margin: 20px auto;
+	margin: 20px auto 71px;
 	width: 23cm;
 	border: 2px #eee solid;
 	border-radius: 7px;
