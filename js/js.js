@@ -2,8 +2,6 @@ const heightCrt = gebi("heightCrt");
 const widthCrt = gebi("widthCrt");
 const inputFace = gebi("inputFace");
 const inputBack = gebi("inputBack");
-let boxsF = document.querySelectorAll(".boxF");
-let boxsB = document.querySelectorAll(".boxB");
 const nmbrCrt = gebi("nmbrCrt");
 const pageFc = gebi("pageFc");
 const pageBack = gebi("pageBack");
@@ -47,20 +45,20 @@ function remvApendChild(prnt, num) {
 		dfrnc = -dfrnc;
 		for (let i = 0; i < dfrnc; i++) {
 			const frCln = frstChld.cloneNode(true);
-			frCln.className = frstChld.className
+			frCln.className = frstChld.className;
 			prnt.appendChild(frCln);
 		}
 	}
-	boxsF = document.querySelectorAll(".boxF");
-	boxsB = document.querySelectorAll(".boxB");
 }
 
 // الاستماع لحدث تغيير المدخلات (عندما يختار المستخدم صورة)
 inputFace.addEventListener("change", ev => {
-	upldImg(ev, boxsF);
+	const boxF= document.querySelectorAll(".boxF");
+	upldImg(ev, boxF);
 });
 inputBack.addEventListener("change", ev => {
-	upldImg(ev, boxsB);
+	const boxB= document.querySelectorAll(".boxB");
+	upldImg(ev, boxB);
 });
 function upldImg(ev, boxs) {
 	const file = ev.target.files[0]; // الحصول على الملف المختار
