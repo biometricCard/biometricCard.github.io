@@ -141,6 +141,23 @@ async function downloadPDF(idDive, namePage, btn) {
 	}
 }
 
+// rotation
+let rotat = false;
+function rotation() {
+	const boxB = document.querySelectorAll(".boxB");
+	if (rotat) {
+		boxB.forEach(elmnt => {
+			elmnt.classList.remove("rotation");
+		});
+		rotat = false;
+	} else {
+		boxB.forEach(elmnt => {
+			elmnt.classList.add("rotation");
+		});
+		rotat = true;
+	}
+}
+
 async function downloadMultiPagePDF(btn) {
 	//
 	const jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;

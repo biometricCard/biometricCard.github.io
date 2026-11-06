@@ -241,7 +241,6 @@
 	border-radius: 19px;
 	width: 5.45cm;
 	height: 8.64cm;
-	/* max-width: 100%; */
 }
 
 .dvBtn {
@@ -261,6 +260,7 @@
 	border-radius: 50%;
 	animation: spin 0.3s linear infinite;
 }
+
 .n {
 	display: none;
 }
@@ -289,11 +289,21 @@ button {
 	align-items: center;
 	gap: 5px;
 	cursor: pointer;
+	/* 1. إضافة ظل افتراضي (الزر يبدو مرتفعاً) */
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.15);
+	/* 1. إضافة تأثير انتقالي ناعم للحركة */
+  transition: transform 0.1s ease;
+}
+button:active {
+  /* تصغير حجم الزر بنسبة 5% (يصبح حجمه 95% من حجمه الطبيعي) */
+  transform: scale(0.95); 
 }
 button img {
 	height: 20px;
 }
 
-
+.rotation{
+	transform: rotate(180deg);
+}
 
     
