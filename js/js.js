@@ -28,7 +28,7 @@ function chngDmnchn(horW, value) {
 
 // change height and width
 nmbrCrt.addEventListener("input", () => {
-	const valueNm = nmbrCrt.value;
+	const valueNm = nmbrCrt.value * 1;
 	if (!valueNm) return;
 	remvApendChild(pageFc, valueNm);
 	remvApendChild(pageBack, valueNm);
@@ -37,15 +37,14 @@ remvApendChild(pageFc, 9);
 remvApendChild(pageBack, 9);
 function remvApendChild(prnt, num) {
 	const frstChld = prnt.querySelector(":scope > img").cloneNode(true);
-	
 	const boxs = prnt.querySelectorAll("img");
 	let dfrnc = boxs.length - num;
 	if (dfrnc > 0) {
 		for (let i = 0; i < dfrnc; i++) {
 			prnt.querySelector(":scope > img").remove();
 		}
-	} else  {
-		dfrnc = -dfrnc ;
+	} else {
+		dfrnc = -dfrnc;
 		for (let i = 0; i < dfrnc; i++) {
 			const frCln = frstChld.cloneNode(true);
 			prnt.appendChild(frCln);
