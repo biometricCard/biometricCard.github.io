@@ -34,7 +34,6 @@ nmbrCrt.addEventListener("input", () => {
 remvApendChild(pageFc, 9);
 remvApendChild(pageBack, 9);
 function remvApendChild(prnt, num) {
-	const frstChld = prnt.querySelector(":scope > img").cloneNode(true);
 	const boxs = prnt.querySelectorAll("img");
 	let dfrnc = boxs.length - num;
 	if (dfrnc > 0) {
@@ -42,6 +41,7 @@ function remvApendChild(prnt, num) {
 			prnt.querySelector(":scope > img").remove();
 		}
 	} else {
+		const frstChld = prnt.querySelector(":scope > img").cloneNode(true);
 		dfrnc = -dfrnc;
 		for (let i = 0; i < dfrnc; i++) {
 			const frCln = frstChld.cloneNode(true);
@@ -53,11 +53,11 @@ function remvApendChild(prnt, num) {
 
 // الاستماع لحدث تغيير المدخلات (عندما يختار المستخدم صورة)
 inputFace.addEventListener("change", ev => {
-	const boxF= document.querySelectorAll(".boxF");
+	const boxF = document.querySelectorAll(".boxF");
 	upldImg(ev, boxF);
 });
 inputBack.addEventListener("change", ev => {
-	const boxB= document.querySelectorAll(".boxB");
+	const boxB = document.querySelectorAll(".boxB");
 	upldImg(ev, boxB);
 });
 function upldImg(ev, boxs) {
