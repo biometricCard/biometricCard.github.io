@@ -76,14 +76,14 @@ function upldImg(ev, boxs) {
 	}
 }
 /* print Dive */
-function printDiv(divId) {
+function printDiv(divId, clas = "") {
 	// 1. جلب محتوى الـ div المراد طباعته
 	var printContents = gebi(divId).innerHTML;
 	// 2. فتح نافذة جديدة في المتصفح
 	var originalContents = document.body.innerHTML;
 	// 3. استبدال محتوى الصفحة بالكامل بمحتوى الـ div مؤقتاً
 	document.body.innerHTML = `<div id="${divId}" 
-        class="ferPage"style="background-color: #fff;">
+        class="ferPage ${clas}"style="background-color: #fff;">
         ${printContents}</div>`;
 	window.print();
 	// 5. إعادة محتوى الصفحة الأصلي بعد إغلاق نافذة الطباعة

@@ -1,0 +1,302 @@
+/* --- الخطوط الأساسية وإعادة التعيين --- 
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');*/
+:root {
+	--primary: #0f62fe;
+	--bg: #f5f7fa;
+	--white: #ffffff;
+	--text: #111;
+	--sidebar-width: 260px;
+}
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: transparent;
+	box-sizing: border-box;
+}
+/* body {
+	font-family: "Cairo", sans-serif;
+} */
+/*------------------------------------------------------
+  Navbar
+------------------------------------------------------*/
+.navbar {
+	height: 60px;
+	width: 21cm;
+	margin: auto;
+	background: var(--white);
+	border-bottom: 1px solid #ddd;
+	display: flex;
+	align-items: center;
+	/* padding: 0 16px; */
+	justify-content: space-between;
+	position: sticky;
+	top: 0;
+	margin-bottom: 10px;
+	z-index: 100;
+}
+.hTitel {
+	color: #007bff; /* لون أزرق جذاب للعناوين */
+	text-align: center;
+	font-weight: 700;
+}
+@media (max-width: 768px) {
+	hTitel {
+		font-size: 1.5em;
+	}
+}
+@media (max-width: 480px) {
+	hTitel {
+		font-size: 1.3em;
+	}
+}
+.nav-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* زر القائمة */
+.menu-btn {
+	width: auto;
+	margin: 0px;
+	font-size: 24px;
+	padding: 4px 10px 6px;
+	border-radius: 8px;
+	border: none;
+	background: #bbb;
+	cursor: pointer;
+}
+.imgNavbar {
+	height: 80%;
+	border-radius: 50%;
+}
+
+/*------------------------------------------------------
+  Sidebar (LEFT side)
+------------------------------------------------------*/
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0; /* ← التعديل المهم */
+	height: 100vh;
+	width: var(--sidebar-width);
+	background: var(--white);
+	border-right: 1px solid #ddd; /* بدل left */
+	transform: translateX(-100%); /* ← مخفي من اليسار */
+	transition: 0.3s ease;
+	z-index: 200;
+	padding: 20px;
+}
+
+.sidebar.open {
+	transform: translateX(0); /* يظهر */
+}
+
+.sidebar h3 {
+	margin-top: 0;
+}
+
+.sidebar a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 10px;
+	color: var(--text);
+	text-decoration: none;
+	border-radius: 6px;
+	margin: 6px 0;
+}
+
+.sidebar a:hover {
+	background: #f0f0f0;
+}
+.sidebar a img {
+	width: 20px;
+}
+/* Overlay */
+.overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 150;
+	display: none;
+}
+
+.overlay.show {
+	display: block;
+}
+
+
+
+/*------------------------------------------------------
+  المحتوى
+------------------------------------------------------*/
+.container {
+	padding: 20px;
+	margin: 20px auto 71px;
+	width: 23cm;
+	border: 2px #eee solid;
+	border-radius: 7px;
+}
+
+.acont {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+/* تحسين الهاتف */
+@media (max-width: 600px) {
+	.nav-title {
+		font-size: 18px;
+	}
+}
+/* End Nave bare and side bare */
+
+/* start page */
+.reglage {
+	width: 21cm;
+	margin: 25px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+.reglage span {
+	color: var(--primary);
+	font-size: 20px;
+	margin-left: 20px;
+}
+.reglage input {
+	border: #007bff 1px solid;
+	border-radius: 3px;
+	padding: 5px;
+	width: 70px;
+}
+.upldImg{
+	width: fit-content;
+	margin: auto;
+}
+.container h2 {
+	text-align: center;
+	color: var(--primary);
+	margin: auto;
+	margin-bottom: 20px;
+	padding: 10px;
+	border-bottom: 2px var(--primary) solid;
+	width: fit-content;
+}
+.img-view {
+	text-align: center;
+	width: fit-content;
+	font-size: 20px;
+	color: var(--primary);
+	font-weight: bold;
+	margin: auto;
+	margin-bottom: 20px;
+}
+.img-view img {
+	height: 100px;
+	margin-bottom: -15px;
+	cursor: pointer;
+}
+/* الحاوية الكبرى */
+
+.ferPage {
+	position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 1cm;
+    width: 21cm;
+    height: 29.7cm;
+    margin: auto;
+    padding: 0.5cm;
+    margin-bottom: 50px;
+    background: #eee;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.ferPage2 {
+	direction: rtl;
+}
+
+/* العناصر الداخلية (اختياري للتنسيق فقط) */
+.box {
+	border: 1px solid #bbb;
+	border-radius: 19px;
+	width: 5.45cm;
+	height: 8.64cm;
+}
+
+.dvBtn {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+	justify-content: center;
+}
+.patient {
+	position: absolute;
+	left: calc(50% - 10px);
+	top: calc(50% - 10px);
+	height: 20px;
+	width: 20px;
+	border: 3px solid #fff;
+	border-left-color: transparent;
+	border-radius: 50%;
+	animation: spin 0.3s linear infinite;
+}
+
+.n {
+	display: none;
+}
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+button {
+	position: relative;
+	background-color: #007bff;
+	color: #fff;
+	padding: 12px 25px;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.1em;
+	display: inline-flex;
+	font-weight: 700;
+	justify-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+	/* 1. إضافة ظل افتراضي (الزر يبدو مرتفعاً) */
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.15);
+	/* 1. إضافة تأثير انتقالي ناعم للحركة */
+  transition: transform 0.1s ease;
+}
+button:active {
+  /* تصغير حجم الزر بنسبة 5% (يصبح حجمه 95% من حجمه الطبيعي) */
+  transform: scale(0.95); 
+}
+button img {
+	height: 20px;
+}
+
+.rotation{
+	transform: rotate(180deg);
+}
+
+    
