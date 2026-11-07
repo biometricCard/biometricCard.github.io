@@ -16,14 +16,14 @@
     }
 
     /* 2. إخفاء كل شيء في الموقع تماماً */
-    body * {
+   /*  body * {
         display: none !important;
     }
-
+ */
     /* 3. إظهار الـ div المراد طباعته فقط وعناصره الداخلية */
-    .ferPage, .ferPage * {
+    /* .ferPage, .ferPage * {
         display: block !important;
-    }
+    } */
 
     /* 4. ضبط الـ div ليأخذ أبعاد ورقة الـ A4 بدقة ومنع الهاتف من تغيير مقاسه */
     .ferPage {
