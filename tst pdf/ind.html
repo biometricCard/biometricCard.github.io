@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <!-- السطر التالي مهم جداً لضبط شاشات الهواتف -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- محتوى الموقع العادي الذي سيختفي عند الطباعة -->
+    <header><h1>موقعي الإلكتروني</h1></header>
+    <main>
+        <p>هذا النص لن يظهر في الطباعة.</p>
+        <button onclick="window.print()">اطبع الـ div الآن</button>
+    </main>
+
+    <!-- الـ div الخاص بك الذي سيتم طباعته بأبعاد A4 الحقيقية -->
+    <div class="print-area">
+        <h2>هذا هو الـ div المراد طباعته بأبعاد A4</h2>
+        <p>سيظهر هذا الجزء فقط في الطباعة سواء من الهاتف أو الكمبيوتر وبأبعاد دقيقة جداً.</p>
+    </div>
+<script>
+    function printDiv() {
+    // الـ CSS سيتكفل بالباقي تلقائياً بمجرد استدعاء هذا الأمر
+    window.print(); 
+}
+
+</script>
+</body>
+</html>

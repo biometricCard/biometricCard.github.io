@@ -10,16 +10,67 @@
 	</head>
 	<body>
 		<div class="container pirantCntynr">
-			<div class="reglage">
+			<button
+				style="margin: 0 20px -31px"
+				onclick="gebi('reglage').classList.toggle('n');"
+			>
+				Settings <img src="./imgs/Settings.svg" alt="" />
+			</button>
+			<div id="reglage" class="reglage n">
 				<div>
 					<span>height :</span>
-					<input id="heightCrt" type="number" value="8.64" step="0.01" /> cm
+					<input class="inpColor"
+						type="number"
+						value="8.64"
+						step="0.01"
+						oninput="prRoot('--heightCrt',this.value+'cm')"
+					/>
+					cm
 					<span>width :</span>
-					<input id="widthCrt" type="number" value="5.45" step="0.01" /> cm
-				</div>
-				<div>
+					<input
+						type="number"
+						value="5.45"
+						step="0.01"
+						oninput="prRoot('--widthCrt',this.value+'cm')"
+					/>
+					cm
 					<span>number : </span>
-					<input id="nmbrCrt" type="number" value="9" step="1" min="1" />
+					<input id="nmbrCrt" type="number" value="9" step="1" min="1" /> cm
+					<br />
+					<br />
+					<span>Page background color :</span>
+					<input
+						type="color"
+						style="height: 20px;color: #fff; padding: 0px "
+						value="#fff"
+						oninput="prRoot('--bgPg',this.value)"
+					/>
+					<br />
+					<br />
+					<span> padding lat : </span>
+					<input
+						type="number"
+						value="0.5"
+						step="0.1"
+						oninput="prRoot('--pdngLat',this.value+'cm')"
+					/>
+					cm
+					<span> padding top & bottom : </span>
+					<input
+						type="number"
+						value="0.5"
+						step="0.1"
+						oninput="prRoot('--pdngTopBtm',this.value+'cm')"
+					/>
+					cm
+					<span> gap : </span>
+					<input
+						type="number"
+						value="1.0"
+						step="0.1"
+						oninput="prRoot('--vrGap',this.value+'cm')"
+					/>
+					cm
 				</div>
 			</div>
 
@@ -42,8 +93,8 @@
 					</div>
 				</label>
 			</div>
-			<div id="pageFc" class="ferPage">
-				<div id="clonDiv" style="position: absolute; z-index: -1"></div>
+			<div id="pageFc" class="ferPage print-area">
+				<!-- <div id="clonDiv" style="position: absolute; z-index: -1"></div> -->
 				<img class="box boxF" src="./imgs/face.jpg" alt="" />
 			</div>
 
@@ -76,13 +127,13 @@
 					</div>
 				</label>
 			</div>
-			<div style="margin-top: -40px;">
+			<div style="margin-top: -40px">
 				<button onclick="rotation()" style="margin: 0 20px 20px">
 					Rotation <img src="./imgs/rotation.svg" alt="" />
 				</button>
 			</div>
-			<div id="pageBack" class="ferPage ferPage2">
-				<div id="clonDiv2" style="position: absolute; z-index: -1"></div>
+			<div id="pageBack" class="ferPage pg2">
+				<!-- <div id="clonDiv2" style="position: absolute; z-index: -1"></div> -->
 				<img class="box boxB" src="./imgs/back.jpg" alt="" />
 			</div>
 			<div class="dvBtn">
@@ -90,7 +141,7 @@
 					<div id="ptpageBack" class="n"></div>
 					Download PDF
 				</button>
-				<button onclick="printDiv('pageBack','ferPage2')">
+				<button onclick="printDiv('pageBack','pg2')">
 					print <img src="./imgs/print.svg" alt="" />
 				</button>
 			</div>
@@ -102,11 +153,12 @@
 				</button>
 			</div>
 		</div>
-
+		<div id="prntRslt" class="print-area n"></div>
 		<script src="./js/html2canvas.min.js"></script>
 		<script src="./js/jspdf.umd.min.js"></script>
 
 		<script src="./js/navbar.js"></script>
 		<script src="./js/js.js"></script>
+		<script src="./js/print.js"></script>
 	</body>
 </html>

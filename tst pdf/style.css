@@ -1,0 +1,37 @@
+/* الكود الطبيعي للموقع يوضع هنا */
+
+
+/* --------------------------------------------------- */
+/* كود الطباعة الخاص بالهواتف والكمبيوتر (Media Print) */
+/* --------------------------------------------------- */
+@media print {
+    /* 1. إجبار الصفحة على اتخاذ أبعاد A4 الحقيقية وتصفير الهوامش */
+    @page {
+        size: A4;
+        margin: 0; 
+    }
+
+    /* 2. إخفاء كل شيء في الموقع تماماً */
+    body * {
+        display: none !important;
+        padding: 0  !important;
+    }
+
+    /* 3. إظهار الـ div المراد طباعته فقط وعناصره الداخلية */
+    .print-area, .print-area * {
+        display: block !important;
+    }
+
+    /* 4. ضبط الـ div ليأخذ أبعاد ورقة الـ A4 بدقة ومنع الهاتف من تغيير مقاسه */
+    .print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 210mm;
+        height: 297mm;
+        box-sizing: border-box;
+        padding: 20mm; /* هامش داخلي اختياري للورقة */
+        margin: 0;
+        background: white;
+    }
+}
