@@ -12,6 +12,10 @@
 	--pdngTopBtm : 0.5cm;
 	--pdngLat : 0.5cm;
 	--vrGap : 1cm;
+	--pgBrdr:2px;
+	--brdr:1px;
+	--brdrRdio:10px;
+	--rtCrd :0deg;
 }
 * {
 	margin: 0;
@@ -230,7 +234,7 @@
 	margin: auto;
 	padding: var(--pdngTopBtm) var(--pdngLat);
 	margin-bottom: 50px;
-	border: 2px solid #aaa;
+	border: var(--pgBrdr) solid #aaa;
 	flex-wrap: wrap;
 	align-content: flex-start;
 	justify-content: flex-start;
@@ -242,10 +246,13 @@
 
 /* العناصر الداخلية (اختياري للتنسيق فقط) */
 .box {
-	border: 1px solid #bbb;
-	border-radius: 19px;
+	border: var(--brdr) solid #bbb;
+	border-radius: var(--brdrRdio);
 	height: var(--heightCrt);
 	width: var(--widthCrt);
+}
+.boxB{
+	transform: rotate(var(--rtCrd));
 }
 
 .dvBtn {
@@ -254,6 +261,7 @@
 	gap: 25px;
 	justify-content: center;
 }
+
 .patient {
 	position: absolute;
 	left: calc(50% - 10px);
@@ -308,5 +316,5 @@ button img {
 }
 
 .rotation {
-	transform: rotate(180deg);
+	transform: rotate(var(--rtCrd));
 }

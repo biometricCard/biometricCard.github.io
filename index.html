@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="./style/style.css" />
 		<link rel="stylesheet" href="./style/printStyle.css" />
 
-		<title>biometric card</title>
+		<title>Image duplication</title>
 	</head>
 	<body>
 		<div class="container pirantCntynr">
@@ -19,7 +19,8 @@
 			<div id="reglage" class="reglage n">
 				<div>
 					<span>height :</span>
-					<input class="inpColor"
+					<input
+						class="inpColor"
 						type="number"
 						value="8.64"
 						step="0.01"
@@ -41,25 +42,27 @@
 					<span>Page background color :</span>
 					<input
 						type="color"
-						style="height: 20px;color: #fff; padding: 0px "
+						style="height: 20px; color: #fff; padding: 0px"
 						value="#fff"
 						oninput="prRoot('--bgPg',this.value)"
 					/>
 					<br />
 					<br />
-					<span> padding lat : </span>
+					<span> padding Lateral : </span>
 					<input
 						type="number"
 						value="0.5"
 						step="0.1"
+						min="0"
 						oninput="prRoot('--pdngLat',this.value+'cm')"
 					/>
 					cm
-					<span> padding top & bottom : </span>
+					<span> padding Horizontal : </span>
 					<input
 						type="number"
 						value="0.5"
 						step="0.1"
+						min="0"
 						oninput="prRoot('--pdngTopBtm',this.value+'cm')"
 					/>
 					cm
@@ -68,13 +71,43 @@
 						type="number"
 						value="1.0"
 						step="0.1"
+						min="0"
 						oninput="prRoot('--vrGap',this.value+'cm')"
 					/>
 					cm
+					<br />
+					<br />
+					<span>Image border : </span>
+					<input
+						type="number"
+						value="1"
+						step="1"
+						min="0"
+						oninput="prRoot('--brdr',this.value+'px')"
+					/>
+					px
+					<span> Image border-radius : </span>
+					<input
+						type="number"
+						value="10"
+						step="1"
+						min="0"
+						oninput="prRoot('--brdrRdio',this.value+'px')"
+					/>
+					px
+					<span>page border : </span>
+					<input
+						type="number"
+						value="2"
+						step="1"
+						min="0"
+						oninput="prRoot('--pgBrdr',this.value+'px')"
+					/>
+					px
 				</div>
 			</div>
 
-			<!-- face of card -->
+			<!-- face of Image -->
 			<h2>page 1</h2>
 
 			<div class="upldImg">
@@ -108,7 +141,7 @@
 				</button>
 			</div>
 			<div style="height: 50px"></div>
-			<!-- Back of card -->
+			<!-- Back of Image -->
 
 			<h2>page 2</h2>
 			<div class="upldImg">
@@ -128,7 +161,10 @@
 				</label>
 			</div>
 			<div style="margin-top: -40px">
-				<button onclick="rotation()" style="margin: 0 20px 20px">
+				<button
+					onclick="rtCrt+=90;prRoot('--rtCrd',rtCrt+'deg')"
+					style="margin: 0 20px 20px"
+				>
 					Rotation <img src="./imgs/rotation.svg" alt="" />
 				</button>
 			</div>

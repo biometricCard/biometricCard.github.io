@@ -56,7 +56,7 @@ navbar.innerHTML = `
 			</div>
 			
 			<h1 class="hTitel">
-			biometric card
+			Image duplication
 			</h1 >
 			<a href="https://pricealerts.web.app" style= "height: 100%; display: flex; align-items: center;">
 				<img id="imgNavbar" class="imgNavbar" src="" alt="">

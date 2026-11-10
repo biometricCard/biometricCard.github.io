@@ -6,6 +6,7 @@ const inputBack = gebi("inputBack");
 const nmbrCrt = gebi("nmbrCrt");
 let pageFc = gebi("pageFc");
 let pageBack = gebi("pageBack");
+let rtCrt = 0;
 
 function gebi(pr) {
 	return document.getElementById(pr);
